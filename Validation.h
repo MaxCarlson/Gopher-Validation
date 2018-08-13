@@ -25,7 +25,7 @@
 #include <QAtomicInt>
 #include <QMutex>
 #include "SPRT.h"
-#include "../autogtp/Game.h"
+#include "Game.h"
 #include "Results.h"
 
 class ValidationWorker : public QThread {

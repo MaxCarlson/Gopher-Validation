@@ -170,7 +170,7 @@
     </QtMoc>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\autogtp\Game.cpp" />
+    <ClCompile Include="Game.cpp" />
     <ClCompile Include="Results.cpp" />
     <ClCompile Include="SPRT.cpp" />
     <ClCompile Include="Validation.cpp" />
@@ -179,7 +179,7 @@
   <ItemGroup>
     <QtMoc Include="..\autogtp\Console.h">
     </QtMoc>
-    <ClInclude Include="..\autogtp\Game.h" />
+    <ClInclude Include="Game.h" />
     <ClInclude Include="Results.h" />
     <ClInclude Include="SPRT.h" />
     <QtMoc Include="Validation.h">
