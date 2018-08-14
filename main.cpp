@@ -115,7 +115,7 @@ int main(int argc, char *argv[])
 
     QStringList optsList = parser.values(optionsOption);
     while (optsList.count() != 2) {
-		optsList << "-v 1 -p 10";
+		optsList << "-v 1 -p 200 -r 0.25 -m 175"; // validation=true, playouts, resignThreshold, maxMoves
     }
 
     QString sprtOpt = parser.value(sprtOption);

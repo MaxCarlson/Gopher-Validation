@@ -42,11 +42,14 @@ void ValidationWorker::run()
 	int gameNum = 0;
 
 	do {
-		
+		static const char* asBlack = " (as black)";
+		static const char* asWhite = " (as white)";
+		bool even = gameNum % 2 == 0;
+
         QTextStream(stdout) << "starting:" << endl <<
-            first.getCmdLine() << endl <<
+            first.getCmdLine() << (even ? asBlack : asWhite) << endl <<
             "vs" << endl <<
-            second.getCmdLine() << endl;
+            second.getCmdLine() << (even ? asWhite : asBlack) << endl;
 
         QString wmove = "play white ";
         QString bmove = "play black ";
@@ -54,7 +57,7 @@ void ValidationWorker::run()
 
 		do {
 
-			if (gameNum % 2 == 0)
+			if (even)
 			{
 				first.move();
 				if (!first.waitForMove()) {
@@ -135,10 +138,12 @@ void ValidationWorker::run()
             } else {
                 emit resultReady(Sprt::Loss, m_expected);
             }
+
             // Change color and play again
-            m_firstNet.swap(m_secondNet);
-            m_firstBin.swap(m_secondBin);
-            m_firstOpts.swap(m_secondOpts);
+            //m_firstNet.swap(m_secondNet);
+            //m_firstBin.swap(m_secondBin);
+            //m_firstOpts.swap(m_secondOpts);
+
             if (m_expected == Game::BLACK) {
                 m_expected = Game::WHITE;
             } else {
@@ -229,23 +234,15 @@ void Validation::startGames() {
                     this,
                     &Validation::getResult,
                     Qt::DirectConnection);
-            if (game % 2) {
-                n1 = m_firstNet;
-                n2 = m_secondNet;
-                b1 = m_firstBin;
-                b2 = m_secondBin;
-                o1 = m_firstOpts;
-                o2 = m_secondOpts;
-                expected = Game::BLACK;
-            } else {
-                n1 = m_secondNet;
-                n2 = m_firstNet;
-                b1 = m_secondBin;
-                b2 = m_firstBin;
-                o1 = m_secondOpts;
-                o2 = m_firstOpts;
-                expected = Game::WHITE;
-            }
+           
+            n1 = m_firstNet;
+            n2 = m_secondNet;
+            b1 = m_firstBin;
+            b2 = m_secondBin;
+            o1 = m_firstOpts;
+            o2 = m_secondOpts;
+            expected = Game::BLACK;
+          
             if (m_gpusList.isEmpty()) {
                 myGpu = "";
             } else {

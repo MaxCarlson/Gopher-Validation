@@ -256,7 +256,6 @@ bool Game::readMove() {
     QTextStream(stdout) << (m_blackToMove ? "B " : "W ") << m_moveDone << ") ";
     QTextStream(stdout).flush();
 
-
 	QStringList moves = m_moveDone.split(" ");
 	m_moveDone = moves.at(0);
 
